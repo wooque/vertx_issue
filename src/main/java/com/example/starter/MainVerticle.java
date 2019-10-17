@@ -13,10 +13,10 @@ public class MainVerticle extends AbstractVerticle {
     client.webSocket(443, "echo.websocket.org", "/", res -> {
       if (res.failed()) {
         res.cause().printStackTrace();
-        return;
+      } else {
+        System.out.println("SUCCESS");
       }
-      System.out.println("SUCCESS");
-      res.result().handler(System.out::println);
+      this.getVertx().close();
     });
   }
 }
